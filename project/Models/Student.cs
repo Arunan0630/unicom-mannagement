@@ -8,5 +8,8 @@ namespace project.Models
 {
     internal class Student
     {
+        public int StudentID { get; set; }
+        public string Name { get; set; }
+        public int CourseID { get; set; }
     }
 }

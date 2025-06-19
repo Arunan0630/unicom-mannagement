@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data.SQLite;
-using System.Linq;
-using System.Net.NetworkInformation;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace project.Data
 {
@@ -59,28 +54,28 @@ namespace project.Data
                     TimeSlot TEXT NOT NULL,
                     RoomID INTEGER NOT NULL,
                     FOREIGN KEY(SubjectID) REFERENCES Subjects(SubjectID),
-                    FOREIGN KEY(RoomID) REFERENCES Rooms(RoomID); ";
+                    FOREIGN KEY(RoomID) REFERENCES Rooms(RoomID)
+                );";
+
             using (var conn = Database.GetConnection())
             {
                 SQLiteCommand cmd = new SQLiteCommand(TablesQ, conn);
                 cmd.ExecuteNonQuery();
 
-                string checkAdminQuery = "SELECT COUNT(*) FROM Users WHERE Role ='Admin'";
+                string checkAdminQuery = "SELECT COUNT(*) FROM Users WHERE Role = 'Admin'";
                 cmd = new SQLiteCommand(checkAdminQuery, conn);
                 long adminCount = (long)cmd.ExecuteScalar();
 
-
                 if (adminCount == 0)
                 {
-                    string insertAdminQuery = "INSERT INTO Users (Username, Password , Role ) VALUES (@username, @password, @role)";
+                    string insertAdminQuery = "INSERT INTO Users (Username, Password, Role) VALUES (@username, @password, @role)";
                     cmd = new SQLiteCommand(insertAdminQuery, conn);
                     cmd.Parameters.AddWithValue("@username", "admin");
                     cmd.Parameters.AddWithValue("@password", "admin123");
                     cmd.Parameters.AddWithValue("@role", "Admin");
+                    cmd.ExecuteNonQuery(); 
                 }
             }
         }
     }
-
-
 }

@@ -1,6 +1,6 @@
 ﻿namespace project.Views
 {
-    partial class MainForm
+    partial class AdminMain
     {
         /// <summary>
         /// Required designer variable.

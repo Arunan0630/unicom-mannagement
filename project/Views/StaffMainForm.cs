@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace project.Views
 {
-    public partial class MainForm : Form
+    public partial class AdminMain : Form
     {
-        public MainForm()
+        public AdminMain()
         {
             InitializeComponent();
         }
